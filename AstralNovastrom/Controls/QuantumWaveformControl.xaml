@@ -1,0 +1,103 @@
+<UserControl x:Class="AstralNovastrom.Controls.QuantumWaveformControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:AstralNovastrom.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="800">
+    <Border Style="{StaticResource ElevatedCard}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- 标题 -->
+            <Border Grid.Row="0" 
+                    Background="{StaticResource HoloGradient}"
+                    CornerRadius="{Binding Source={StaticResource Large}, Converter={StaticResource BottomCornersConverter}}"
+                    Padding="20,16">
+                <StackPanel Orientation="Horizontal" 
+                            VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Waveform" 
+                                             Width="24" Height="24"
+                                             Foreground="{StaticResource OnPrimaryContainer}"
+                                             Margin="0,0,12,0"/>
+                    <TextBlock Text="Ψ-场实时共振谱" 
+                               FontSize="18" FontWeight="Bold"
+                               Foreground="{StaticResource OnPrimaryContainer}"/>
+                    <Border Style="{StaticResource Chip}" 
+                            Margin="12,0,0,0">
+                        <TextBlock Text="实时流" 
+                                   Foreground="{StaticResource OnPrimaryContainer}"
+                                   FontSize="11"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- 波形图 -->
+            <Canvas Grid.Row="1" Margin="20">
+                <!-- 动态波形将在这里绘制 -->
+                <Path x:Name="PrimaryWaveform" 
+                      Stroke="{StaticResource QuantumGradient}"
+                      StrokeThickness="3"
+                      StrokeLineJoin="Round">
+                    <Path.Effect>
+                        <BlurEffect Radius="2"/>
+                    </Path.Effect>
+                </Path>
+                <Path x:Name="SecondaryWaveform" 
+                      Stroke="{StaticResource OnSecondaryContainer}"
+                      StrokeThickness="1"
+                      Opacity="0.5"
+                      StrokeLineJoin="Round"/>
+            </Canvas>
+
+            <!-- 控制栏 -->
+            <Border Grid.Row="2" 
+                    BorderBrush="{StaticResource OutlineVariant}"
+                    BorderThickness="0,1,0,0"
+                    Padding="20,12">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Right">
+                    <Button Style="{StaticResource OutlinedButton}" 
+                            Content="实时监控"
+                            Width="100" 
+                            Height="36" 
+                            Margin="0,0,8,0"/>
+                    <Button Style="{StaticResource FilledButton}" 
+                            Content="捕获波形">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="RootBorder"
+                                        Background="{TemplateBinding Background}"
+                                        CornerRadius="{StaticResource Large}"
+                                        Padding="16,8"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Capture" 
+                                                                 Width="16" Height="16"
+                                                                 Foreground="{TemplateBinding Foreground}"
+                                                                 Margin="0,0,8,0"/>
+                                        <ContentPresenter/>
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="RootBorder" 
+                                                Property="Background" 
+                                                Value="#3AFFFFFF"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</UserControl>
