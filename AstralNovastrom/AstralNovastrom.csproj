@@ -12,9 +12,19 @@
 
   <ItemGroup>
     <Folder Include="docs\" />
+    <Folder Include="src\" />
+    <Folder Include="src\Controls\" />
+    <Folder Include="src\Converters\" />
+    <Folder Include="src\Models\" />
+    <Folder Include="src\Resources\" />
+    <Folder Include="src\Resources\Brushes\" />
+    <Folder Include="src\Resources\Styles\" />
+    <Folder Include="src\Services\" />
+    <Folder Include="src\Services\Reactor\" />
+    <Folder Include="src\Services\Security\" />
+    <Folder Include="src\Utilities\" />
+    <Folder Include="src\ViewModels\" />
   </ItemGroup>
-
-
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="5.3.0" />

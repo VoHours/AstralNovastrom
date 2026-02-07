@@ -6,7 +6,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using AstralNovastrom.Models;
+using AstralNovastrom.src.Controls;
+using AstralNovastrom.src.Models;
 
 namespace AstralNovastrom
 {
@@ -189,7 +190,7 @@ namespace AstralNovastrom
 
         private void CloseFloatingWindow_Click(object sender, RoutedEventArgs e)
         {
-            FloatingConfigWindow.Visibility = Visibility.Collapsed;
+            // FloatingConfigWindow已移至src/Controls文件夹
         }
 
         // 窗口拖动
@@ -212,6 +213,11 @@ namespace AstralNovastrom
         protected virtual void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+
+        private void QuantumWaveformControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

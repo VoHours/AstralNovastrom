@@ -1,0 +1,79 @@
+<UserControl x:Class="AstralNovastrom.src.Controls.DeviceStatusControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AstralNovastrom.src.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- 温度指标 -->
+        <Border Grid.Column="0" Style="{StaticResource DataCard}">
+            <StackPanel>
+                <TextBlock Text="Temperature" 
+                           Style="{StaticResource ValueLabel}"/>
+                <TextBlock Text="30°C" 
+                           Style="{StaticResource ValueDisplay}"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 压力指标 -->
+        <Border Grid.Column="1" Style="{StaticResource DataCard}">
+            <StackPanel>
+                <TextBlock Text="Pressure" 
+                           Style="{StaticResource ValueLabel}"/>
+                <TextBlock Text="2000 Pa" 
+                           Style="{StaticResource ValueDisplay}"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 稳定状态指�?-->
+        <Border Grid.Column="2" Style="{StaticResource DataCard}">
+            <StackPanel>
+                <TextBlock Text="Stable State" 
+                           Style="{StaticResource ValueLabel}"/>
+                <TextBlock Text="95%" 
+                           Style="{StaticResource ValueDisplay}"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 处理进度指标 -->
+        <Border Grid.Column="3" Style="{StaticResource DataCard}">
+            <StackPanel>
+                <TextBlock Text="Processing Progress" 
+                           Style="{StaticResource ValueLabel}"/>
+                <TextBlock Text="30%" 
+                           Style="{StaticResource ValueDisplay}"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 处理效率指标 -->
+        <Border Grid.Column="4" Style="{StaticResource DataCard}">
+            <StackPanel>
+                <TextBlock Text="Processing Efficiency" 
+                           Style="{StaticResource ValueLabel}"/>
+                <TextBlock Text="2650 g/s" 
+                           Style="{StaticResource ValueDisplay}"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- 输入能量指标 -->
+        <Border Grid.Column="5" Style="{StaticResource DataCard}">
+            <StackPanel>
+                <TextBlock Text="Input Energy" 
+                           Style="{StaticResource ValueLabel}"/>
+                <TextBlock Text="600000 kW" 
+                           Style="{StaticResource ValueDisplay}"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

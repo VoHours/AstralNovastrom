@@ -1,0 +1,259 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:AstralNovastrom.src.Converters"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+  
+  <!-- 转换器 -->
+  <converters:LogStyleConverter x:Key="LogStyleConverter"/>
+  <converters:EfficiencyColorConverter x:Key="EfficiencyColorConverter"/>
+  <converters:BottomCornersConverter x:Key="BottomCornersConverter"/>
+  <converters:TopCornersConverter x:Key="TopCornersConverter"/>
+
+  <!-- 字体定义 -->
+  <FontFamily x:Key="CyberDisplayFont">JetBrains Mono, Consolas, Cascadia Code</FontFamily>
+  <FontFamily x:Key="DisplayFont">JetBrains Mono, Consolas, Cascadia Code</FontFamily>
+  <FontFamily x:Key="CyberBodyFont">Segoe UI Variable, Segoe UI</FontFamily>
+
+  <!-- 量子渐变画刷（本地备份） -->
+  <LinearGradientBrush x:Key="QuantumGradientBrush" StartPoint="0,0" EndPoint="1,1">
+    <GradientStop Color="#FF00C6FF" Offset="0"/>
+    <GradientStop Color="#FF9D00FF" Offset="0.5"/>
+    <GradientStop Color="#FF00FFAA" Offset="1"/>
+  </LinearGradientBrush>
+
+  <!-- 科幻卡片样式（MaterialCard/ElevatedCard 供子控件使用，需在应用级定义） -->
+  <Style x:Key="MaterialCard" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource SurfaceVariantBrush}"/>
+    <Setter Property="CornerRadius" Value="{StaticResource ShapeLarge}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#40000000" BlurRadius="8" ShadowDepth="1"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!-- 数据值显示样式 - 供 ConfigurationPanelControl 使用 -->
+  <Style x:Key="ValueDisplay" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource CyberDisplayFont}"/>
+    <Setter Property="FontSize" Value="24"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+    <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+  </Style>
+
+  <Style x:Key="ElevatedCard" TargetType="Border" BasedOn="{StaticResource MaterialCard}">
+    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OnPrimaryBrush}"/>
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#60000000" BlurRadius="16" ShadowDepth="2"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <Style x:Key="CyberCard" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource SurfaceVariantBrush}"/>
+    <Setter Property="CornerRadius" Value="{StaticResource ShapeLarge}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Effect">
+      <Setter.Value>
+        <DropShadowEffect Color="#40000000" BlurRadius="16" ShadowDepth="2"/>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- 状态指示灯 -->
+  <Style x:Key="StatusIndicatorStyle" TargetType="Ellipse">
+    <Setter Property="Width" Value="12"/>
+    <Setter Property="Height" Value="12"/>
+    <Setter Property="Stroke" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="StrokeThickness" Value="1"/>
+  </Style>
+  
+  <!-- 数据值显示 -->
+  <Style x:Key="DataValueStyle" TargetType="TextBlock">
+    <Setter Property="FontFamily" Value="{StaticResource CyberDisplayFont}"/>
+    <Setter Property="FontSize" Value="24"/>
+    <Setter Property="FontWeight" Value="Bold"/>
+    <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+  </Style>
+
+  <!-- 标签样式（ValueLabel 为 MainWindow 命名兼容） -->
+  <Style x:Key="DataLabelStyle" TargetType="TextBlock">
+    <Setter Property="FontSize" Value="12"/>
+    <Setter Property="Foreground" Value="#AAAAAA"/>
+    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+  </Style>
+  <Style x:Key="ValueLabel" TargetType="TextBlock" BasedOn="{StaticResource DataLabelStyle}"/>
+  
+  <!-- 按钮样式 -->
+  <Style x:Key="FilledButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionButton}">
+    <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+    <Setter Property="Foreground" Value="{StaticResource OnPrimaryBrush}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+
+    <Setter Property="Padding" Value="16,8"/>
+    <Setter Property="FontSize" Value="14"/>
+    <Setter Property="FontWeight" Value="Medium"/>
+    <Setter Property="materialDesign:ButtonAssist.CornerRadius" Value="{StaticResource ShapeFull}"/>
+    <Style.Triggers>
+      <Trigger Property="IsMouseOver" Value="True">
+        <Setter Property="Background" Value="#3AFFFFFF"/>
+      </Trigger>
+      <Trigger Property="IsPressed" Value="True">
+        <Setter Property="Background" Value="#6AFFFFFF"/>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+  
+  <Style x:Key="OutlinedButton" TargetType="Button">
+    <Setter Property="Foreground" Value="{StaticResource OnSurfaceBrush}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="16,8"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="8"
+                  Padding="{TemplateBinding Padding}">
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="Background" Value="#2000C6FF"/>
+              <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter Property="Background" Value="#4000C6FF"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style x:Key="OutlinedToggleButton" TargetType="ToggleButton">
+    <Setter Property="Foreground" Value="{StaticResource OnSurfaceBrush}"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Padding" Value="16,8"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ToggleButton">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="8"
+                  Padding="{TemplateBinding Padding}">
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="Background" Value="#2000C6FF"/>
+              <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter Property="Background" Value="#4000C6FF"/>
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+              <Setter Property="Background" Value="#3000C6FF"/>
+              <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- 滑块样式 -->
+  <Style x:Key="MaterialSlider" TargetType="Slider">
+    <Setter Property="Background" Value="{StaticResource SurfaceVariantBrush}"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Height" Value="4"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Slider">
+          <Grid>
+            <Border x:Name="TrackBackground" 
+                    Background="{TemplateBinding Background}"
+                    Height="{TemplateBinding Height}"
+                    CornerRadius="2"/>
+            <Border x:Name="TrackValue" 
+                    Background="{StaticResource QuantumGradientBrush}"
+                    Height="{TemplateBinding Height}"
+                    Width="{TemplateBinding Width}"
+                    CornerRadius="2"
+                    HorizontalAlignment="Left"/>
+            <Thumb x:Name="SliderThumb" 
+                                   Background="{StaticResource OnPrimaryBrush}"
+                                   Width="20" Height="20"
+                                   VerticalAlignment="Center">
+              <Thumb.Effect>
+                <DropShadowEffect Color="#8000C6FF" BlurRadius="8"/>
+              </Thumb.Effect>
+            </Thumb>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- 进度条样式 -->
+  <Style x:Key="QuantumProgressBar" TargetType="ProgressBar">
+    <Setter Property="Background" Value="{StaticResource SurfaceVariantBrush}"/>
+    <Setter Property="Foreground" Value="{StaticResource QuantumGradientBrush}"/>
+    <Setter Property="Height" Value="12"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ProgressBar">
+          <Border Background="{TemplateBinding Background}" 
+                  CornerRadius="{StaticResource ShapeFull}">
+            <Grid>
+              <Border x:Name="PART_Track" 
+                      CornerRadius="{StaticResource ShapeFull}"
+                      Background="{TemplateBinding Background}"/>
+              <Border x:Name="PART_Indicator" 
+                      CornerRadius="{StaticResource ShapeFull}"
+                      Background="{TemplateBinding Foreground}"
+                      HorizontalAlignment="Left">
+                <Border.Effect>
+                  <BlurEffect Radius="4"/>
+                </Border.Effect>
+              </Border>
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- 标签样式 -->
+  <Style x:Key="Chip" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+    <Setter Property="CornerRadius" Value="{StaticResource ShapeFull}"/>
+    <Setter Property="Padding" Value="12,6"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+  </Style>
+  
+  <!-- 数据卡片 -->
+  <Style x:Key="DataCard" TargetType="Border">
+    <Setter Property="Background" Value="{StaticResource SurfaceBrush}"/>
+    <Setter Property="CornerRadius" Value="{StaticResource ShapeMedium}"/>
+    <Setter Property="Padding" Value="16"/>
+    <Setter Property="BorderBrush" Value="{StaticResource OutlineBrush}"/>
+    <Setter Property="BorderThickness" Value="1"/>
+  </Style>
+  
+</ResourceDictionary>
